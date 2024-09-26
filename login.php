@@ -1,30 +1,3 @@
-<?php
-
-include ('conn.php');
-
-session_start();
-
-// Suponha que você tenha uma função para validar o usuário
-function authenticate($username, $password) {
-    // Substitua isso pela sua lógica de autenticação, como verificar em um banco de dados.
-    return $username === 'usuario' && $password === 'senha';
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if (authenticate($username, $password)) {
-        // Defina a sessão do usuário se a autenticação for bem-sucedida
-        $_SESSION['user'] = $username;
-        header('Location: index.php'); // Redireciona para index.php
-        exit();
-    } else {
-        echo "<script>alert('Usuário ou senha inválidos.');</script>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -106,14 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="login-container">
         <h2>Login</h2>
-        <form>
+        <form method="POST" action="valida.php">
             <div class="form-group">
                 <label for="username">Usuário</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="nome" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="senha" required>
             </div>
             <button type="submit" class="btn-login"><a href="index.php"></a>Entrar</button>
         </form>
