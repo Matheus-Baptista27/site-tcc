@@ -1,4 +1,12 @@
+
 <?php
+session_start();
+if(!$_SESSION['nome']) {
+	header('Location: index.php');
+	exit();
+};
+
+
 
     include 'conn.php';
 
@@ -14,7 +22,7 @@
 <html class="wide wow-animation" lang="pt-BR"> 
   <head>
     <!-- Site Titulo-->
-    <title>Home</title>
+    <title>Painel</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,54 +92,45 @@
     </div>
     
    <!-- Page Header-->
-<header class="section page-header">
-  <!-- RD Navbar-->
-  <div class="rd-navbar-wrap rd-navbar-corporate">
-    <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-      <div class="rd-navbar-inner">
-        <!-- RD Navbar PAINEL-->
-        <div class="rd-navbar-panel">
-          <!-- RD Navbar MARCA-LOGO-->
-          <div class="rd-navbar-brand">
-            <a class="brand-name" href="index.php">
-              <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
-            </a>
+    <header class="section page-header">
+      <!-- RD Navbar-->
+      <div class="rd-navbar-wrap rd-navbar-corporate">
+        <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
+          <div class="rd-navbar-inner">
+            <!-- RD Navbar PAINEL-->
+            <div class="rd-navbar-panel">
+              <!-- RD Navbar MARCA-LOGO-->
+              <div class="rd-navbar-brand">
+                <a class="brand-name" href="index.html">
+                  <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
+                </a>
+              </div>
+            </div>
+            <div class="rd-navbar-aside-center">
+              <div class="rd-navbar-nav-wrap">
+                <!-- RD Navbar Nav-->
+                <ul class="rd-navbar-nav">
+                  <li class="active"><a href="index.php">Inicio</a></li>
+                  <li><a href="about-us.php">Sobre Nós</a></li>
+                  <li><a href="contacts.php">Contato</a></li>      
+                  <li><a href="logout.php">Sair</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="rd-navbar-aside-right">
+            <a class="button button-sm button-secondary button-nina" href="#">Reserve seu Destino</a>-->
+              <!--<a class="btn btn-lg w-10"
+                href="#"
+                style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
+                onmouseover="this.style.backgroundColor='#a0c4e1';"
+                onmouseout="this.style.backgroundColor='#77a0d8';">
+                Reserve seu destino
+              </a>-->
+            </div> 
           </div>
-        </div>
-        <div class="rd-navbar-aside-center">
-          <div class="rd-navbar-nav-wrap">
-            <!-- RD Navbar Nav-->
-            <ul class="rd-navbar-nav">
-              <!-- Verifica qual página está ativa e aplica a classe 'active' -->
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
-                <a href="index.php">Início</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
-                <a href="about-us.php">Sobre Nós</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
-                <a href="contacts.php">Contato</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                <a href="reviews.php">Avaliações</a>
-              </li>
-              <li><a href="#">Sair</a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- Botão Reserve seu Destino -->
-        <a class="btn btn-lg w-10"
-          href="#"
-          style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
-          onmouseover="this.style.backgroundColor='#a0c4e1';"
-          onmouseout="this.style.backgroundColor='#77a0d8';">
-          Reserve seu destino
-        </a>
+        </nav>
       </div>
-    </nav>
-  </div>
-</header>
-
+    </header>
 
         <!-- controle do scrooll do mouse -->
         <script>
@@ -162,7 +161,7 @@
                 <div class="container container-bigger swiper-main-section">
                   <div class="row row-fix justify-content-sm-center justify-content-md-start">
                     <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-5">
-                      <h3>VOE - VIVA O EXPLORAR</h3>
+                      <h3>VOE - VIVA O EXPLORAR -> Painel Administrativo</h3>
                       <div class="divider divider-decorate"></div>
                       <p class="text-spacing-sm" style="color: white;">Quem nós somos?
                             O Site ajudará o você que deseja sair da sua rotina e gosta de viajar e
@@ -313,26 +312,16 @@
       <footer class="section page-footer page-footer-minimal novi-background bg-cover text-center bg-gray-darker"  style="background-color:#77a0d8">
         <div class="container container-wide">
           <div class="row row-fix justify-content-sm-center align-items-md-center row-30">
-            
-          <!-- ICONE DO FOOTER -->
-            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-left">
-              <a href="about-us.php">
-                <img class="inverse-logo" src="images/logo-voe.png" alt="" width="250" height="60" style="max-width: 100%;"/>
-              </a>
-            </div>
-            
-            <!-- COPYRIGHT DO FOOTER -->
+            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-left"><a href="index.html"><img class="inverse-logo" src="images/logo-voe.png" alt="" width="208" height="46"/></a></div>
             <div class="col-md-10 col-lg-7 col-xl-4">
-              <p class="right" style="color: black; font-size: 18px;">&nbsp;<span class="copyright-year"></span> Todos os direitos reservados. Desenvolvido&nbsp;por&nbsp;<a href="#">Matheus Baptista</a></p>
-            </div>  
-
-            <!-- ICONES DO FOOTER -->
+              <p class="right" style="color: black;">&nbsp;<span class="copyright-year"></span> Todos os direitos reservados. Desenvolvido&nbsp;por&nbsp;<a href="#">Matheus Baptista</a></p>
+            </div>
             <div class="col-md-10 col-lg-7 col-xl-4 text-xl-right">
-            <ul style="display: flex; justify-content: flex-end; gap: 10px; padding: 0; margin: 0; list-style: none;"> 
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-facebook" href="#" style="font-size: 50px;"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-instagram" href="#" style="font-size: 50px;"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-google" href="#" style="font-size: 50px;"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-whatsapp" href="#" style="font-size: 50px;"></a></li>
+              <ul class="group-xs group-middle"> 
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-facebook" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-instagram" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-google" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-whatsapp" href="#"></a></li>
               </ul>
             </div>
           </div>
