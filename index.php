@@ -115,6 +115,9 @@
               <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
                 <a href="reviews.php">Avaliações</a>
               </li>
+              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : ''; ?>">
+                <a href="register.php">Cadastre sua Empresa</a>
+              </li>
               <li><a href="#">Sair</a></li>
             </ul>
           </div>
@@ -195,7 +198,7 @@
                 <h4>Encontre seu Destino</h4>
 
                 <!-- Formulário -->
-                <form class="rd-mailform form-fix">
+                <form class="rd-mailform form-fix" action="processa_formulario.php" method="POST">
                   <div class="row row-20 row-fix">
 
                   <!-- INDICAÇÃO DO VALOR DESEJADO -->
@@ -295,7 +298,7 @@
                       </div>
                     <div class="col-sm-12 col-lg-12">
                       <div class="form-button">
-                        <button class="button button-secondary button-nina" id="btn-pesquisar">Pesquisar</button>
+                        <button class="button button-secondary button-nina" id="btn-pesquisar">Pesquisar Destino</button>
                       </div>
                     </div>
                   </div>
