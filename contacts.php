@@ -124,7 +124,7 @@
         </div>
         <!-- Botão Reserve seu Destino -->
         <a class="btn btn-lg w-10"
-          href="#"
+          href="index.php"
           style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
           onmouseover="this.style.backgroundColor='#a0c4e1';"
           onmouseout="this.style.backgroundColor='#77a0d8';">
@@ -143,19 +143,18 @@
               <!-- Box minimal-->
               <article class="box-simple">
                 <div class="box-simple-icon novi-icon mdi mdi-map-marker"></div>
-                <h6>Address</h6>
-                <div class="box-simple-text"><a href="#">2130 Fulton Street, Chicago, IL <br> 94117-1080 USA</a></div>
+                <h6>Endereço</h6>
+                <div class="box-simple-text"><a href="#">1234 Centro, Taquara, RS <br> 95607-710</a></div>
               </article>
             </div>
             <div class="col-sm-6 col-lg-3">
               <!-- Box simple-->
               <article class="box-simple">
                 <div class="box-simple-icon novi-icon mdi mdi-phone"></div>
-                <h6>phones</h6>
+                <h6>Telefone/Whatsapp</h6>
                 <div class="box-simple-text">
                   <ul class="list-comma list-0">
-                    <li><a href="tel:#">1-800-6543-765</a></li>
-                    <li><a href="tel:#">1-800-3434-876</a></li>
+                    <li><a href="tel:#">55991470000</a></li>
                   </ul>
                 </div>
               </article>
@@ -164,10 +163,10 @@
               <!-- Box simple-->
               <article class="box-simple">
                 <div class="box-simple-icon novi-icon mdi mdi-email-open"></div>
-                <h6>e-mail</h6>
+                <h6>E-mail</h6>
                 <div class="box-simple-text">
                   <ul class="list-comma list-0">
-                    <li><a href="mailto:#">mail@demolink.org</a></li>
+                    <li><a href="mailto:#">voe@email.com</a></li>
                   </ul>
                 </div>
               </article>
@@ -176,11 +175,11 @@
               <!-- Box simple-->
               <article class="box-simple">
                 <div class="box-simple-icon novi-icon mdi mdi-calendar-clock"></div>
-                <h6>opening hours</h6>
+                <h6>Horário de Funcionamento</h6>
                 <div class="box-simple-text">
                   <ul class="list-0">
-                    <li>Mon–Fri: 9:00 am–6:00 pm</li>
-                    <li>Sat–Sun: 11:00 am–4:00 pm</li>
+                    <li>Seg a Sex: 08:00hrs as 18:00hrs </li>
+                    <li>Sáb: 08:00hrs as 12:00hrs</li>
                   </ul>
                 </div>
               </article>
@@ -196,21 +195,21 @@
             <div class="row row-fix row-50">
               <div class="col-lg-8 col-xl-7">
                 <div class="section-wrap-content section-lg">
-                  <h3>Contact us</h3>
+                  <h3>Contate-nos</h3>
                   <hr class="divider divider-left divider-secondary">
-                  <p class="big">You can contact us any way that is convenient for you. We are available 24/7 via fax or email. You can also use a quick contact form below or visit our office personally.</p>
+                  <p class="big">Você pode entrar em contato conosco de qualquer maneira que seja conveniente para você. Você também pode usar um formulário de contato rápido abaixo ou visitar nosso escritório pessoalmente.</p>
                   <!-- FORMULARIO PARA CONTATO-->
                   <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
                     <div class="row row-fix row-20">
                       <div class="col-md-6">
                         <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-name">First name</label>
+                          <label class="form-label-outside" for="form-1-name">Nome</label>
                           <input class="form-input" id="form-1-name" type="text" name="name" data-constraints="@Required"/>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-last-name">Last name</label>
+                          <label class="form-label-outside" for="form-1-last-name">Sobrenome</label>
                           <input class="form-input" id="form-1-last-name" type="text" name="last-name" data-constraints="@Required"/>
                         </div>
                       </div>
@@ -222,19 +221,19 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-phone">Phone</label>
+                          <label class="form-label-outside" for="form-1-phone">Telefone</label>
                           <input class="form-input" id="form-1-phone" type="text" name="phone" data-constraints="@Numeric @Required"/>
                         </div>
                       </div>
                       <div class="col-sm-12">
                         <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-message">Message</label>
+                          <label class="form-label-outside" for="form-1-message">Mensagem</label>
                           <textarea class="form-input" id="form-1-message" name="message" data-constraints="@Required"></textarea>
                         </div>
                       </div>
                       <div class="col-sm-12 offset-custom-1">
                         <div class="form-button">
-                          <button class="button button-secondary button-nina" type="submit">send message</button>
+                          <button class="button button-secondary button-nina" type="submit">Enviar mensagem</button>
                         </div>
                       </div>
                     </div>
@@ -245,10 +244,10 @@
           </div>
           <div class="section-wrap-aside">
             <!-- RD Google Map-->
-            <div class="google-map-container google-map-with-icon rd-google-map__model" data-zoom="5" data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-icon="images/gmap_marker.png" data-icon-active="images/gmap_marker_active.png" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
+            <div class="google-map-container google-map-with-icon rd-google-map__model" data-zoom="5" data-center="-29.6500, -50.7800" data-icon="images/" data-icon-active="images/" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
               <div class="google-map"></div>
               <ul class="google-map-markers">
-                <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-description="9870 St Vincent Place, Glasgow"></li>
+                <li data-location="-29.6500, -50.7800" data-description="Centro de Taquara, Rio Grande do Sul"></li>
               </ul>
             </div>
           </div>

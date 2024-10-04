@@ -64,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mensagem = "<p style='color: red;'>Erro ao realizar o cadastro. Tente novamente.</p>";
             }
         } catch (PDOException $e) {
-            // Em produção, evite exibir mensagens de erro detalhadas
+            
             $mensagem = "<p style='color: red;'>Ocorreu um erro no sistema. Por favor, tente mais tarde.</p>";
-            // Para fins de desenvolvimento, você pode descomentar a linha abaixo para ver o erro
+
             // $mensagem .= "<p style='color: red;'>Erro: " . $e->getMessage() . "</p>";
         }
     }
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <!-- Botão Reserve seu Destino -->
         <a class="btn btn-lg w-10"
-          href="#"
+          href="index.php"
           style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
           onmouseover="this.style.backgroundColor='#a0c4e1';"
           onmouseout="this.style.backgroundColor='#77a0d8';">
@@ -290,8 +290,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         </form>
 
-    </div>
-</section>
+        </div>
+    </section>
 
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>

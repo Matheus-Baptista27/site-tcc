@@ -124,7 +124,7 @@
         </div>
         <!-- Botão Reserve seu Destino -->
         <a class="btn btn-lg w-10"
-          href="#"
+          href="index.php"
           style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
           onmouseover="this.style.backgroundColor='#a0c4e1';"
           onmouseout="this.style.backgroundColor='#77a0d8';">

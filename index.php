@@ -290,8 +290,8 @@
                           <option value="1">Tipos de lugares</option>
                           <option value="2">Cidade</option>
                           <option value="3">Interior</option>
-                          <option value="4">Serra</option>
-                          <option value="4">Praia</option>
+                          <!--<option value="4">Serra</option> -->
+                          <!--<option value="4">Praia</option> -->
                           <option value="4">Passeio de lazer</option>
                         </select>
                       </div>
