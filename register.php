@@ -8,76 +8,14 @@ include 'conn.php';
 // Variável para armazenar mensagens de erro ou sucesso
 $mensagem = '';
 
-// Verificar se o formulário foi submetido
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capturar e sanitizar os dados do formulário
-    $nome_estabelecimento = strtoupper(trim($_POST['nome_estabelecimento']));
-    $email = trim($_POST['email']);
-    $telefone = trim($_POST['telefone']);
-    $cidade = trim($_POST['cidade']);
-    $endereco = trim($_POST['endereco']);
-    $estado = trim($_POST['estado']);
-    $cep = trim($_POST['cep']);
-    $tipo_estabelecimento = trim($_POST['tipo_estabelecimento']);
-    $preferencia = isset($_POST['preferencia']) ? 1 : 0;
 
-    // Validação básica
-    if (empty($nome_estabelecimento)) {
-        $mensagem = "<p style='color: red;'>Por favor, preencha todos os campos obrigatórios.</p>";
-    } else {
-        try {
-            // Preparar a query de inserção
-            $query = "INSERT INTO estabelecimentos (
-                                  nome_estabelecimento,
-                                  email, 
-                                  telefone, 
-                                  cidade, 
-                                  endereco,
-                                  estado,
-                                  cep, 
-                                  tipo_estabelecimento, 
-                                  preferencia)
-                      VALUES (:nome,
-                              :email,
-                              :telefone,
-                              :cidade,
-                              :endereco,
-                              :estado,
-                              :cep 
-                              :tipo, 
-                              :preferencia)";
-            $stmt = $conn->prepare($query);
-            $stmt->bindParam(':nome', $nome_estabelecimento);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':telefone', $telefone);
-            $stmt->bindParam(':cidade', $cidade);
-            $stmt->bindParam(':endereco', $endereco);
-            $stmt->bindParam(':estado', $estado);
-            $stmt->bindParam(':cep', $cep);
-            $stmt->bindParam(':tipo', $tipo_estabelecimento);
-            $stmt->bindParam(':preferencia', $preferencia);
-
-            // Executar a query
-            if ($stmt->execute()) {
-                $mensagem = "<p style='color: green;'>Cadastro realizado com sucesso!</p>";
-            } else {
-                $mensagem = "<p style='color: red;'>Erro ao realizar o cadastro. Tente novamente.</p>";
-            }
-        } catch (PDOException $e) {
-            
-            $mensagem = "<p style='color: red;'>Ocorreu um erro no sistema. Por favor, tente mais tarde.</p>";
-
-            // $mensagem .= "<p style='color: red;'>Erro: " . $e->getMessage() . "</p>";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="pt-BR"> 
   <head>
     <!-- Site Titulo-->
-    <title>Home</title>
+    <title>Cadastro de Estabelecimento</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -211,19 +149,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php echo $mensagem; ?>
 
         <!-- Formulário de Cadastro -->
-        <!-- Formulário de Cadastro -->
-        <form action="register.php" method="POST" style="max-width: 600px; margin: 2rem auto; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <form action="cadastro-bd.php" method="POST" style="max-width: 600px; margin: 2rem auto; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
             
             <!-- Nome do Estabelecimento -->
             <div class="form-group" style="margin-bottom: 1rem;">
-                <label for="nome_estabelecimento" style="display: block; margin-bottom: 0.5rem;">Nome do Estabelecimento<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="nome_estabelecimento" name="nome_estabelecimento" required style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="nome" style="display: block; margin-bottom: 0.5rem;">Nome do Estabelecimento<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="nome" name="nome" required style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
             </div>
 
             <!-- Email -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="email" style="display: block; margin-bottom: 0.5rem;">Email</label>
-                <input type="email" class="form-control" id="email" name="Email" placeholder="email" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
             </div>
 
             <!-- Telefone -->
@@ -258,8 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Tipos do Estabelecimento -->
             <div class="form-group" style="margin-bottom: 1rem;">
-                <label for="tipo_estabelecimento" style="display: block; margin-bottom: 0.5rem;">Tipo de Estabelecimento</label>
-                <select class="form-control" id="tipo_estabelecimento" name="tipo_estabelecimento" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;">
+                <label for="tipo" style="display: block; margin-bottom: 0.5rem;">Tipo de Estabelecimento</label>
+                <select class="form-control" id="tipo" name="tipo" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;">
                     <option value="">Selecione o tipo</option>
                     <option value="Hotel">Hotel ou Pousada</option>
                     <option value="Restaurantes">Restaurantes</option>
@@ -269,8 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <!-- Valor Aproximado para Refeição ou Hospedagem -->
             <div class="form-group" style="margin-bottom: 1rem;">
-                <label for="valor_aproximado" style="display: block; margin-bottom: 0.5rem;">Valor Aproximado (R$ - Por Pessoa)</label>
-                <input type="number" class="form-control" id="valor_aproximado" name="valor_aproximado" step="0.01" placeholder="Ex: 100.00" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <label for="valor" style="display: block; margin-bottom: 0.5rem;">Valor Aproximado (R$ - Por Pessoa)</label>
+                <input type="number" class="form-control" id="valor" name="valor" step="0.01" placeholder="Ex: 100.00" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
             </div>
 
             <!-- Preferência de Visualização -->
