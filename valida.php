@@ -23,6 +23,6 @@ if($row == 1) {
 	exit();
 } else {
 	$_SESSION['nao_autenticado'] = true;
-	header('Location: about-us.php');
+	header('Location: cadastro-admin.php');
 	exit();
 }

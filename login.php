@@ -20,7 +20,7 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="senha" required>
             </div>
-            <button type="submit" class="btn-login"><a href="index.php"></a>Entrar</button>
+            <button type="submit" class="btn-login"><a href="cadastro-admin.php"></a>Entrar</button>
         </form>
     </div>
 

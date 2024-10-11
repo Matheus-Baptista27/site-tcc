@@ -12,6 +12,13 @@
     // Iniciar a sessão
     session_start();
 
+    if (isset($_SESSION['nome_foto'])) {
+        $nome_foto = $_SESSION['nome_foto'];
+        echo "<img src='images/$nome_foto' title='$nome_foto' alt='Imagem do Estabelecimento' style='max-width: 200px; max-height: 200px;'>";
+        unset($_SESSION['nome_foto']); // Limpa a variável da sessão após exibir a imagem
+    }
+    
+
     // Incluir a conexão com o banco de dados
     include 'conn.php';
 
@@ -19,6 +26,20 @@
      function mensagem($texto, $tipo) {
         echo "<div class='alert alert-$tipo' role='alert'>$texto</div>";
     }
+
+    function mover_foto($vetor_foto) {
+        if (!$vetor_foto['error']) {
+            $extensao = pathinfo($vetor_foto['name'], PATHINFO_EXTENSION); // Obter extensão correta
+            $nome_arquivo = date('YmdHis') . "." . $extensao; // Nome do arquivo com data e extensão
+            $caminho = "images/" . $nome_arquivo;
+    
+            if (move_uploaded_file($vetor_foto['tmp_name'], $caminho)) {
+                return $nome_arquivo; // Retornar o nome do arquivo para salvar no banco de dados
+            }
+        }
+        return null;
+    }
+    
 
     // Verificar se o formulário foi enviado via POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'cadastrar') {
@@ -33,11 +54,19 @@
         $tipo = trim($_POST['tipo']);
         $valor = trim($_POST['valor']);
 
+        $foto = $_FILES['foto'];
+        $nome_foto = mover_foto($foto) ?: '';
+
         // Query para inserir os dados
-        $sql = "INSERT INTO estabelecimento (nome, email, telefone, cidade, endereco, estado, cep, tipo, valor) VALUES ('$nome', '$email', '$telefone', '$cidade', '$endereco', '$estado', '$cep', '$tipo', '$valor')";
+        $sql = "INSERT INTO estabelecimento (nome, email, telefone, cidade, endereco, estado, cep, tipo, valor, foto) VALUES ('$nome', '$email', '$telefone', '$cidade', '$endereco', '$estado', '$cep', '$tipo', '$valor', '$nome_foto')";
 
         // Executar a query e verificar o sucesso
     if (mysqli_query($conn, $sql)) {
+        
+        if ($nome_foto) {
+            $_SESSION['nome_foto'] = $nome_foto; // Armazena o nome da imagem na sessão
+        }
+
         // Armazenar a mensagem na sessão
         $_SESSION['mensagem'] = "$nome cadastrado com sucesso!";
         $_SESSION['tipo_mensagem'] = 'success';
@@ -58,7 +87,7 @@ if (isset($_SESSION['mensagem'])) {
 }
 
     // Buscar todos os registros cadastrados
-    //$result = mysqli_query($conn, "SELECT * FROM estabelecimento");
+    $result = mysqli_query($conn, "SELECT * FROM estabelecimento");
     
       // Buscar registros cadastrados ou filtrar pelo nome
       $termoPesquisa = isset($_GET['pesquisa']) ? trim($_GET['pesquisa']) : ''; // Certifica-se de que a variável está definida
@@ -76,7 +105,7 @@ if (isset($_SESSION['mensagem'])) {
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
         <form class="d-flex" role="search" action="cadastro-bd.php" method="GET">
-    <input class="form-control me-2" type="search" name="pesquisa" placeholder="Nome da empresa" aria-label="Search" value="<?php echo htmlspecialchars($termoPesquisa); ?>">
+    <input class="form-control me-2" type="search" name="pesquisa" placeholder="Nome da empresa" aria-label="Search" autofocus value="<?php echo htmlspecialchars($termoPesquisa); ?>">
     <button class="btn btn-outline-success" type="submit">Pesquisar</button>
 </form>
         </div>
@@ -85,12 +114,13 @@ if (isset($_SESSION['mensagem'])) {
     <table class="table table-hover mt-4">
         <thead>
             <tr>
+                <th scope="col">Imagem</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefone</th>
                 <th scope="col">Cidade</th>
                 <th scope="col">Endereço</th>
-                <th scope="col">Estado</th>
+                <th scope="col">Estado</th> 
                 <th scope="col">CEP</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Valor (R$)</th>
@@ -102,6 +132,7 @@ if (isset($_SESSION['mensagem'])) {
             if ($result && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
+                    echo "<td><img src='images/" . htmlspecialchars($row['foto']) . "' alt='Imagem do Estabelecimento' class='lista_foto' style='width: 100px; 100px; height: 100px; object-fit: cover; border-radius: 50px;'></td>";
                     echo "<td>" . htmlspecialchars($row['nome']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['telefone']) . "</td>";

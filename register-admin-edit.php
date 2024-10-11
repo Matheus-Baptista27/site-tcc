@@ -8,6 +8,28 @@ include 'conn.php';
 // Variável para armazenar mensagens de erro ou sucesso
 $mensagem = '';
 
+// Verifica se o ID foi passado na URL
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+
+  // Consulta ao banco para buscar os dados do estabelecimento
+  $query = "SELECT * FROM estabelecimento WHERE id = ?";
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param("i", $id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  // Verifica se o registro foi encontrado
+  if ($result->num_rows > 0) {
+      $estabelecimento = $result->fetch_assoc();
+  } else {
+      echo "Registro não encontrado.";
+      exit;
+  }
+} else {
+  echo "ID não fornecido.";
+  exit;
+}
 
 ?>
 
@@ -15,7 +37,7 @@ $mensagem = '';
 <html class="wide wow-animation" lang="pt-BR"> 
   <head>
     <!-- Site Titulo-->
-    <title>Cadastro de Estabelecimento</title>
+    <title>Alteração de Cadastro</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -143,77 +165,71 @@ $mensagem = '';
             Cadastre seu estabelecimento e tenha preferência na visualização, atraindo mais clientes para o seu negócio!
         </div>
 
-        <h2>Cadastro de Estabelecimentos</h2>
+        <h2>Editar Informações</h2>
 
         <!-- Mensagem de Sucesso ou Erro -->
         <?php echo $mensagem; ?>
 
         <!-- Formulário de Cadastro -->
-        <form action="cadastro-bd.php" method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: 2rem auto; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <form action="atualizar-estabelecimento.php" method="POST" style="max-width: 600px; margin: 2rem auto; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
             
             <!-- Nome do Estabelecimento -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="nome" style="display: block; margin-bottom: 0.5rem;">Nome do Estabelecimento<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="nome" name="nome" required style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="nome" name="nome" required style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['nome']); ?>">
             </div>
 
             <!-- Email -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="email" style="display: block; margin-bottom: 0.5rem;">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['email']); ?>">
             </div>
 
             <!-- Telefone -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="telefone" style="display: block; margin-bottom: 0.5rem;">Telefone</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['telefone']); ?>">
             </div>
             
             <!-- Cidade -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="cidade" style="display: block; margin-bottom: 0.5rem;">Cidade</label>
-                <input type="text" class="form-control" id="cidade" name="cidade" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="cidade" name="cidade" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['cidade']); ?>">
             </div>
 
             <!-- Endereço -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="endereco" style="display: block; margin-bottom: 0.5rem;">Endereço</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="endereco" name="endereco" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['endereco']); ?>">
             </div>
             
             <!-- Estado -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="estado" style="display: block; margin-bottom: 0.5rem;">Estado</label>
-                <input type="text" class="form-control" id="estado" name="estado" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="estado" name="estado" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['estado']); ?>">
             </div>
 
             <!-- CEP -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="cep" style="display: block; margin-bottom: 0.5rem;">CEP</label>
-                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['cep']); ?>">
             </div>
 
             <!-- Tipos do Estabelecimento -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="tipo" style="display: block; margin-bottom: 0.5rem;">Tipo de Estabelecimento</label>
-                <select class="form-control" id="tipo" name="tipo" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;">
-                    <option value="">Selecione o tipo</option>
-                    <option value="Hotel">Hotel ou Pousada</option>
-                    <option value="Restaurantes">Restaurantes</option>
-                    <option value="Lancherias">Lancherias</option>
-                </select>
+                <select class="form-control" id="tipo" name="tipo" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;" value="<?php echo htmlspecialchars($estabelecimento['tipo']); ?>">
+                  <option value="">Selecione o tipo</option>
+                  <option value="Hotel" <?php if ($estabelecimento['tipo'] == 'Hotel') echo 'selected'; ?>>Hotel ou Pousada</option>
+                  <option value="Restaurantes" <?php if ($estabelecimento['tipo'] == 'Restaurantes') echo 'selected'; ?>>Restaurantes</option>
+                  <option value="Lancherias" <?php if ($estabelecimento['tipo'] == 'Lancherias') echo 'selected'; ?>>Lancherias</option>
+               </select>
             </div>
             
             <!-- Valor Aproximado para Refeição ou Hospedagem -->
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="valor" style="display: block; margin-bottom: 0.5rem;">Valor Aproximado (R$ - Por Pessoa)</label>
-                <input type="number" class="form-control" id="valor" name="valor" step="0.01" placeholder="Ex: 100.00" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
-            </div>
-
-            <!-- IMAGEM REFERENCIA PARA O ESTABELECIMENTO -->
-            <div class="form-group" style="margin-bottom: 1rem;">
-                <label for="foto" style="display: block; margin-bottom: 0.5rem;">Imagem Estabelecimento</label>
-                <input type="file" class="form-control" id="foto" name="foto" accept="image/*" style="width:100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                <input type="number" class="form-control" id="valor" name="valor" step="0.01" placeholder="Ex: 100.00" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px;" value="<?php echo htmlspecialchars($estabelecimento['valor']); ?>">
             </div>
 
             <!-- Preferência de Visualização -->
@@ -225,12 +241,13 @@ $mensagem = '';
 
             <!-- BOTÃO DE CADASTRAR  -->
             <div class="form-button" style="text-align: center; margin-top: 1.5rem;">
-            <input type="hidden" name="acao" value="cadastrar">
             <button type="submit" class="btn-submit" style="padding: 0.75rem 1.5rem; background-color: #77a0d8; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;" 
                 onmouseover="this.style.backgroundColor='#a0c4e1';" 
                 onmouseout="this.style.backgroundColor='#77a0d8';">
-                Cadastrar Estabelecimento
+                Atualizar Informações
             </button>
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($estabelecimento['id']); ?>">
+
         </div>
         </form>
 
