@@ -1,7 +1,6 @@
 <?php
 
     include 'conn.php';
-
     // Realiza a consulta dos locais
     $sql="select * from locais";
     $result_de = mysqli_query($conn, $sql);
@@ -23,12 +22,16 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:200,400%7CLato:300,400,300italic,700%7CMontserrat:900">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="css/fonts.css">
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"> </script>
 		<![endif]--> 
+  
+
   </head>
   <body>
     <!-- Page preloader-->
@@ -83,21 +86,23 @@
       </div>
     </div>
     
-   <!-- Page Header-->
-<header class="section page-header">
+   <!-- Page Header-->  
+  <header class="section page-header">
   <!-- RD Navbar-->
   <div class="rd-navbar-wrap rd-navbar-corporate">
     <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-      <div class="rd-navbar-inner">
+    <div class="rd-navbar-inner">
+
         <!-- RD Navbar PAINEL-->
         <div class="rd-navbar-panel">
+
           <!-- RD Navbar MARCA-LOGO-->
           <div class="rd-navbar-brand">
             <a class="brand-name" href="index.php">
               <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
             </a>
           </div>
-        </div>
+        </div>  
         <div class="rd-navbar-aside-center">
           <div class="rd-navbar-nav-wrap">
             <!-- RD Navbar Nav-->
@@ -198,31 +203,30 @@
                 <h4>Encontre seu Destino</h4>
 
                 <!-- Formulário -->
-                <form class="rd-mailform form-fix" action="processa_formulario.php" method="POST">
+                <form class="rd-mailform form-fix" action="processa-formulario.php" method="POST">
                   <div class="row row-20 row-fix">
-
-                  <!-- INDICAÇÃO DO VALOR DESEJADO -->
-                  <div class="col-sm-12 col-lg-6">
-                    <label class="form-label-outside">Valor desejado de investimento (R$)</label>
-                    <div class="form-wrap form-wrap-validation">
-                      <input class="form-input" id="investmentValue" name="investment_value" type="text" placeholder="Digite o valor desejado">
+                    
+                    <!-- INDICAÇÃO DO VALOR DESEJADO -->
+                    <div class="col-sm-12 col-lg-6">
+                      <label class="form-label-outside">Valor desejado de investimento (R$)</label>
+                      <div class="form-wrap form-wrap-validation">
+                        <input class="form-input" id="investmentValue" name="valor_investimento" type="text" placeholder="Digite o valor desejado">
+                      </div>
                     </div>
-                  </div>
 
-                  <script>
-                    document.getElementById('investmentValue').addEventListener('input', function (e) {
-                      let value = e.target.value.replace(/\D/g, ''); // Remove todos os caracteres que não são números
-                      value = (value / 100).toFixed(2); // Divide por 100 e mantém duas casas decimais
-                      value = value.replace('.', ','); // Substitui o ponto por vírgula (formato brasileiro)
-                      e.target.value = `R$ ${value}`; // Adiciona o símbolo de real
-                    });
-                  </script>
+                    <script>
+                      document.getElementById('investmentValue').addEventListener('input', function (e) {
+                        let value = e.target.value.replace(/\D/g, '');
+                        value = (value / 100).toFixed(2);
+                        e.target.value = `R$ ${value}`;
+                      });
+                    </script>
 
                     <!-- DESTINO -->
                     <div class="col-sm-12">
                       <label class="form-label-outside">De</label>
                       <div class="form-wrap form-wrap-inline">
-                        <select class="form-input select-filter" name="city">
+                        <select class="form-input select-filter" name="cidade_de">
                           <?php while($row = mysqli_fetch_assoc($result_de)): ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['local']; ?></option>
                           <?php endwhile; ?>
@@ -232,7 +236,7 @@
                     <div class="col-sm-12">
                       <label class="form-label-outside">Para</label>
                       <div class="form-wrap form-wrap-inline">
-                        <select class="form-input select-filter" name="city">
+                        <select class="form-input select-filter" name="cidade_para">
                           <?php while($row = mysqli_fetch_assoc($result_para)): ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['local']; ?></option>
                           <?php endwhile; ?>
@@ -240,71 +244,80 @@
                       </div>
                     </div>
 
-                    <!-- INDICAÇÃO DA DATA PAA A VIAGEM -->
+                    <!-- INDICAÇÃO DA DATA INICIO E FIM PARA A VIAGEM -->
                     <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Data Inicio</label>
+                      <label class="form-label-outside">Data Início</label>
                       <div class="form-wrap form-wrap-validation">
-                        <input class="form-input" id="dateForm" name="date" type="text" data-time-picker="date">
-                        <label class="form-label" for="dateForm">Escolha a data</label>
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Dias disponíveis</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <select class="form-input select-filter" name="city">
-                          <option value="1">Quantos dias?</option>
-                          <option value="2">2 dias</option>
-                          <option value="3">3 dias</option>
-                          <option value="4">4 dias</option>
-                          <option value="4">5 dias</option>
-                          <option value="4">6 dias</option>
-                        </select>
+                        <input class="form-input" id="dateForm" name="data_viagem" type="date">
+                        <label class="form-label" for="dateForm"></label>
                       </div>
                     </div>
 
-                    <!-- INDICAÇÃO SE DESEJA ESTABELECIMENTOS -->
-                    <div class="col-sm-12">
-                    <label class="form-label-outside">Tipo de Estabelecimento</label>
-                    <div class="form-wrap form-wrap-inline">
-                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                      <div class="col-md-6" style="display: flex; flex-direction: column;">
-                        <label style="margin-bottom: 0.5rem;">
-                          <input type="checkbox" name="establishment_type[]" value="hotel"> Hotel e Pousada
-                        </label>
-                        <label style="margin-bottom: 0.5rem;">
-                          <input type="checkbox" name="establishment_type[]" value="restaurante"> Restaurante
-                        </label>
-                        <label style="margin-bottom: 0.5rem;">
-                          <input type="checkbox" name="establishment_type[]" value="cafe"> Lancherias
-                        </label>
+                    <div class="col-sm-12 col-lg-6">
+                      <label class="form-label-outside">Data Fim</label>
+                      <div class="form-wrap form-wrap-validation">
+                        <input class="form-input" id="dateForm" name="data_viagem" type="date">
+                        <label class="form-label" for="dateForm"></label>
                       </div>
                     </div>
-                  </div>
-                </div>
-                 
-                <!-- INDICAÇÃO DO TIPO DE LOCAL -->
-                <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Locais desejados</label>
+                    
+                    <!-- DIAS DISPONÍVEIS 
+                    <div class="col-sm-12 col-lg-6">
+                      <label class="form-label-outside">Dias disponíveis</label>
                       <div class="form-wrap form-wrap-validation">
-                        <select class="form-input select-filter" name="city">
-                          <option value="1">Tipos de lugares</option>
-                          <option value="2">Cidade</option>
-                          <option value="3">Interior</option>
-                          <!--<option value="4">Serra</option> -->
-                          <!--<option value="4">Praia</option> -->
-                          <option value="4">Passeio de lazer</option>
+                        <select class="form-input select-filter" name="dias_permanencia">
+                          <option value="">Quantos dias?</option>
+                          <option value="1">1 dia</option>
+                          <option value="2">2 dias</option>
+                          <option value="3">3 dias</option>
+                          <option value="4">4 dias</option>
+                          <option value="5">5 dias</option>
+                          <option value="6">6 dias</option>
                         </select>
                       </div>
+                    </div>-->
+
+                    <!-- TIPO DE ESTABELECIMENTO -->
+                    <div class="col-sm-12">
+                      <label class="form-label-outside">Tipo de Estabelecimento</label>
+                      <div class="form-wrap form-wrap-inline">
+                        <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                          <div class="col-md-6" style="display: flex; flex-direction: column;">
+                            <label style="margin-bottom: 0.5rem;">
+                              <input type="checkbox" name="establishment_type[]" value="hotel"> Hotel e Pousada
+                            </label>
+                            <label style="margin-bottom: 0.5rem;">
+                              <input type="checkbox" name="establishment_type[]" value="restaurante"> Restaurante
+                            </label>
+                            <label style="margin-bottom: 0.5rem;">
+                              <input type="checkbox" name="establishment_type[]" value="cafe"> Lancherias
+                            </label>
+                          </div>
+                        </div>
                       </div>
+                    </div>
+                    
+                    <!-- TIPO DE LOCAL -->
+                    <div class="col-sm-12 col-lg-6">
+                      <label class="form-label-outside">Locais desejados</label>
+                      <div class="form-wrap form-wrap-validation">
+                        <select class="form-input select-filter" name="tipo_local">
+                          <option value="">Tipos de lugares</option>
+                          <option value="cidade">Cidade</option>
+                          <option value="interior">Interior</option>
+                          <option value="lazer">Passeio de lazer</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <!-- BOTÃO DE PESQUISA -->
                     <div class="col-sm-12 col-lg-12">
                       <div class="form-button">
-                        <button class="button button-secondary button-nina" id="btn-pesquisar">Pesquisar Destino</button>
+                        <button class="button button-secondary button-nina" id="btn-pesquisar" type="submit">Pesquisar Destino</button>
                       </div>
                     </div>
                   </div>
                 </form>
-                <!-- Fim do Formulário -->
-
               </div>
             </div>
           </div>
@@ -344,6 +357,12 @@
     </div>
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"> </div>
+    
+    <!-- jQuery, Popper.js e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>

@@ -86,64 +86,65 @@ $mensagem = '';
     </div>
 
    <!-- Page Header-->
-<header class="section page-header">
-  <!-- RD Navbar-->
-  <div class="rd-navbar-wrap rd-navbar-corporate">
-    <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-      <div class="rd-navbar-inner">
-        <!-- RD Navbar PAINEL-->
-        <div class="rd-navbar-panel">
-          <!-- RD Navbar MARCA-LOGO-->
-          <div class="rd-navbar-brand">
-            <a class="brand-name" href="index.php">
-              <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
-            </a>
+  <header class="section page-header">
+    <!-- RD Navbar-->
+    <div class="rd-navbar-wrap rd-navbar-corporate">
+      <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
+        <div class="rd-navbar-inner">
+          <!-- RD Navbar PAINEL-->
+          <div class="rd-navbar-panel">
+            <!-- RD Navbar MARCA-LOGO-->
+            <div class="rd-navbar-brand">
+              <a class="brand-name" href="index.php">
+                <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="rd-navbar-aside-center">
-          <div class="rd-navbar-nav-wrap">
-            <!-- RD Navbar Nav-->
-            <ul class="rd-navbar-nav">
-              <!-- Verifica qual página está ativa e aplica a classe 'active' -->
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
-                <a href="index.php">Início</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
-                <a href="about-us.php">Sobre Nós</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
-                <a href="contacts.php">Contato</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                <a href="reviews.php">Avaliações</a>
-              </li>
-              <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                <a href="register.php">Cadastre sua Empresa</a>
-              </li>
-              <li><a href="#">Sair</a></li>
-            </ul>
+          <div class="rd-navbar-aside-center">
+            <div class="rd-navbar-nav-wrap">
+              <!-- RD Navbar Nav-->
+              <ul class="rd-navbar-nav">
+                <!-- Verifica qual página está ativa e aplica a classe 'active' -->
+                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
+                  <a href="index.php">Início</a>
+                </li>
+                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
+                  <a href="about-us.php">Sobre Nós</a>
+                </li>
+                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
+                  <a href="contacts.php">Contato</a>
+                </li>
+                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
+                  <a href="reviews.php">Avaliações</a>
+                </li>
+                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
+                  <a href="register.php">Cadastre sua Empresa</a>
+                </li>
+                <li><a href="#">Sair</a></li>
+              </ul>
+            </div>
           </div>
+          <!-- Botão Reserve seu Destino -->
+          <a class="btn btn-lg w-10"
+            href="index.php"
+            style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
+            onmouseover="this.style.backgroundColor='#a0c4e1';"
+            onmouseout="this.style.backgroundColor='#77a0d8';">
+            Reserve seu destino
+          </a>
         </div>
-        <!-- Botão Reserve seu Destino -->
-        <a class="btn btn-lg w-10"
-          href="index.php"
-          style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
-          onmouseover="this.style.backgroundColor='#a0c4e1';"
-          onmouseout="this.style.backgroundColor='#77a0d8';">
-          Reserve seu destino
-        </a>
-      </div>
-    </nav>
-  </div>
-</header>
-<section>
+      </nav>
+    </div>
+  </header>
+
+  <section>
     <div class="container">
         <!-- Mensagem de Benefício -->
-        <div class="benefit-message">
+        <div class="benefit-message" style="text-align: center;">
             Cadastre seu estabelecimento e tenha preferência na visualização, atraindo mais clientes para o seu negócio!
         </div>
 
-        <h2>Cadastro de Estabelecimentos</h2>
+        <h2 style="text-align: center;">Cadastro de Estabelecimentos</h2>
 
         <!-- Mensagem de Sucesso ou Erro -->
         <?php echo $mensagem; ?>

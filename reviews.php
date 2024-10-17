@@ -1,13 +1,6 @@
 <?php
 
     include 'conn.php';
-
-    // Realiza a consulta dos locais
-    $sql="select * from locais";
-    $result_de = mysqli_query($conn, $sql);
-
-    // Reexecuta a consulta para ser usada no campo "Para"
-    $result_para = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -160,9 +153,149 @@
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Blockquote-->
+    <!-- FORMULÁRIO PARA DEIXAR AVALIAÇÕES DOS ESTABELECIMENTOS E TAMBÉM SOBRE O SITE -->
+    <div class="section-wrap-inner">
+      <div class="container container-bigger">
+        <div class="row row-fix row-50">
+          <div class="col-lg-8 col-xl-7">
+            <div class="section-wrap-content section-lg">
+              <h3>Deixe sua avaliação</h3>
+              <hr class="divider divider-left divider-secondary">
+              <p class="big">Deixe seu feedback sobre o nosso site ou o estabelecimento específico que você usufruiu. Sua opinião é importante para outros usuários!</p>
+              
+              <!-- FORMULÁRIO DE AVALIAÇÃO -->
+              <form action="feedback.php" class="rd-mailform" method="post">
+                  <div class="row row-fix row-20">
+                    
+                    <!-- Nome -->
+                    <div class="col-md-6">
+                      <div class="form-wrap form-wrap-validation">
+                        <label class="form-label-outside" for="form-1-name">Nome</label>
+                        <input class="form-input" id="name" type="text" name="name" placeholder="Nome e Sobrenome" required minlength="3"/>
+                      </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                      <div class="form-wrap form-wrap-validation">
+                        <label class="form-label-outside" for="form-1-email">Email</label>
+                        <input class="form-input" id="email" type="email" name="email" placeholder="Seu email" required/>
+                      </div>
+                    </div>
+                    
+                    <!-- Data -->
+                    <div class="col-md-6">
+                      <div class="form-wrap form-wrap-validation">
+                        <label class="form-label-outside" for="form-1-date">Data do Feedback</label>
+                        <input class="form-input" id="date" type="date" name="date" required/>
+                      </div>
+                    </div>
+
+                    <!-- Mensagem -->
+                    <div class="col-sm-12">
+                      <div class="form-wrap form-wrap-validation">
+                        <label class="form-label-outside" for="form-1-message">Mensagem</label>
+                        <textarea class="form-input" id="message" name="message" placeholder="Deixe seu feedback" required minlength="10"></textarea>
+                      </div>
+                    </div>
+                    
+                    <!-- Botão de Envio -->
+                    <div class="col-sm-12 offset-custom-1">
+                      <div class="form-button">
+                        <button class="button button-secondary button-nina" type="submit">Enviar Feedback</button>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal de sucesso (escondido por padrão) -->
+      <div id="successModal" class="modal" style="display: none;">
+          <div class="modal-content">
+              <span class="close-btn">&times;</span>
+              <h2>Obrigado pelo seu feedback!</h2>
+              <p>Seu feedback foi enviado com sucesso. Agradecemos por nos ajudar a melhorar!</p>
+          </div>
+      </div>
+
+      <!-- Script de feedback -->
+      <script>
+        document.querySelector('.rd-mailform').addEventListener('submit', function(e) {
+            
+            // Mostra o modal de sucesso
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'flex';
+
+            // Fecha o modal ao clicar no botão de fechar
+            document.querySelector('.close-btn').addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // Fecha o modal ao clicar fora dele
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+      </script>
+
+      <style>
+        /* Estilos do modal */
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-content h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            color: #333;
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Animação de aparição do modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+      </style>
+
+      <!-- CITAÇÃO DAS AVALIAÇÕES-->
       <section class="section section-lg bg-default">
         <div class="container">
           <div class="row row-50 row-fix">
@@ -181,48 +314,7 @@
           </div>
         </div>
       </section>
-
-      <!-- ELEMTENTOS DE TEXTO HTML-->
-      <!--<section class="section section-lg bg-default">
-        <div class="container">
-          <div class="row row-fix">
-            <div class="col-lg-10 col-xl-8">
-              <h3>HTML Text Elements</h3>
-              <ul class="list-xs">
-                <li><a href="#">Link text</a></li>
-                <li><a class="link-hover" href="#">Hover link text</a></li>
-                <li><span class="font-weight-bold">Bold Text</span></li>
-                <li><span class="font-italic">Italic Text</span></li>
-                <li>
-                  <mark>This is a highlighted text</mark>
-                </li>
-                <li><span class="text-strike">This is a strikethrough text</span></li>
-                <li><span class="text-underline">This is an underlined text.</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>-->
-
-      <!-- LISTA NÃO ORDENADA -->
-      <!--<section class="section section-lg bg-default">
-        <div class="container">
-          <div class="row row-50 row-fix">
-            <div class="col-lg-10 col-xl-8">
-              <h3>Unordered List</h3>
-              <p>We specialize in a variety of services. Our aim is to deliver the top level of customer service based on your requests.</p>
-              <ul class="list-marked">
-                <li>Consulting</li>
-                <li>Customer Service</li>
-                <li>Innovation</li>
-                <li>Management</li>
-                <li>Ethics</li>
-              </ul>
-              <p>We hope that with our services you will receive the most personalized help in purchasing any kind of products you are looking for.</p>
-            </div>
-          </div>
-        </div>
-      </section> -->
+    </div>
 
       <!-- lISTA DE OBSERVAÇÕES E ICONES NESTA SESSAO-->
       <section class="section section-lg bg-default">

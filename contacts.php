@@ -1,13 +1,6 @@
 <?php
 
     include 'conn.php';
-
-    // Realiza a consulta dos locais
-    $sql="select * from locais";
-    $result_de = mysqli_query($conn, $sql);
-
-    // Reexecuta a consulta para ser usada no campo "Para"
-    $result_para = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +18,6 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
-		<!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
-    <script src="js/html5shiv.min.js"> </script>
-		<![endif]--> 
   </head>
   <body>
     <!-- Page preloader-->
@@ -197,40 +186,39 @@
                 <div class="section-wrap-content section-lg">
                   <h3>Contate-nos</h3>
                   <hr class="divider divider-left divider-secondary">
-                  <p class="big">Você pode entrar em contato conosco de qualquer maneira que seja conveniente para você. Você também pode usar um formulário de contato rápido abaixo ou visitar nosso escritório pessoalmente.</p>
-                  <!-- FORMULARIO PARA CONTATO-->
-                  <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                  <p class="big">Você pode entrar em contato conosco de qualquer maneira que seja conveniente para você.
+                                 Você também pode usar um formulário de contato rápido abaixo ou visitar nosso escritório pessoalmente.
+                  </p>
+                  
+                  <!-- FORMULÁRIO PARA CONTATO -->
+                  <form class="rd-mailform" method="post" action="contacts.php" onsubmit="event.preventDefault(); handleFormSubmit();">
                     <div class="row row-fix row-20">
+                      
+                      <!-- Nome -->
                       <div class="col-md-6">
                         <div class="form-wrap form-wrap-validation">
                           <label class="form-label-outside" for="form-1-name">Nome</label>
-                          <input class="form-input" id="form-1-name" type="text" name="name" data-constraints="@Required"/>
+                          <input class="form-input" id="form-1-name" type="text" name="name" placeholder="Seu Nome" required minlength="3"/>
                         </div>
                       </div>
+
+                      <!-- Email -->
                       <div class="col-md-6">
                         <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-last-name">Sobrenome</label>
-                          <input class="form-input" id="form-1-last-name" type="text" name="last-name" data-constraints="@Required"/>
+                          <label class="form-label-outside" for="form-1-email">Email</label>
+                          <input class="form-input" id="form-1-email" type="email" name="email" placeholder="Seu Email" required/>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-email">E-mail</label>
-                          <input class="form-input" id="form-1-email" type="email" name="email" data-constraints="@Email @Required"/>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-wrap form-wrap-validation">
-                          <label class="form-label-outside" for="form-1-phone">Telefone</label>
-                          <input class="form-input" id="form-1-phone" type="text" name="phone" data-constraints="@Numeric @Required"/>
-                        </div>
-                      </div>
+                      
+                      <!-- Mensagem -->
                       <div class="col-sm-12">
                         <div class="form-wrap form-wrap-validation">
                           <label class="form-label-outside" for="form-1-message">Mensagem</label>
-                          <textarea class="form-input" id="form-1-message" name="message" data-constraints="@Required"></textarea>
+                          <textarea class="form-input" id="form-1-message" name="message" placeholder="Digite sua mensagem" required minlength="10"></textarea>
                         </div>
                       </div>
+                      
+                      <!-- Botão de Envio -->
                       <div class="col-sm-12 offset-custom-1">
                         <div class="form-button">
                           <button class="button button-secondary button-nina" type="submit">Enviar mensagem</button>
@@ -238,10 +226,91 @@
                       </div>
                     </div>
                   </form>
+
+                  <!-- Modal de sucesso -->
+                  <div id="successModal" class="modal" style="display: none;">
+                      <div class="modal-content">
+                          <span class="close-btn">&times;</span>
+                          <h2>Mensagem Enviada!</h2>
+                          <p>Obrigado por entrar em contato. Em breve, responderemos à sua mensagem!</p>
+                      </div>
+                  </div>
+
+                  <!-- Script de exibição do modal -->
+                  <script>
+                      function handleFormSubmit() {
+                          // Aqui você pode adicionar a lógica AJAX para enviar o formulário sem recarregar a página
+                          // Supondo que o envio foi bem-sucedido, exibe o modal
+                          const modal = document.getElementById('successModal');
+                          modal.style.display = 'flex';
+
+                          // Fecha o modal ao clicar no botão de fechar
+                          document.querySelector('.close-btn').addEventListener('click', function() {
+                              modal.style.display = 'none';
+                          });
+
+                          // Fecha o modal ao clicar fora dele
+                          window.addEventListener('click', function(event) {
+                              if (event.target === modal) {
+                                  modal.style.display = 'none';
+                              }
+                          });
+                      }
+                  </script>
+
+                  <style>
+                      /* Estilos do modal */
+                      .modal {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          position: fixed;
+                          z-index: 999;
+                          left: 0;
+                          top: 0;
+                          width: 100%;
+                          height: 100%;
+                          background-color: rgba(0, 0, 0, 0.6);
+                      }
+
+                      .modal-content {
+                          background-color: #fefefe;
+                          padding: 20px;
+                          border-radius: 8px;
+                          text-align: center;
+                          max-width: 400px;
+                          width: 80%;
+                          animation: fadeIn 0.4s ease;
+                      }
+
+                      .modal-content h2 {
+                          color: #4CAF50;
+                          margin-bottom: 10px;
+                      }
+
+                      .modal-content p {
+                          color: #333;
+                      }
+
+                      .close-btn {
+                          float: right;
+                          font-size: 20px;
+                          font-weight: bold;
+                          cursor: pointer;
+                      }
+
+                      /* Animação de aparição do modal */
+                      @keyframes fadeIn {
+                          from { opacity: 0; }
+                          to { opacity: 1; }
+                      }
+                  </style>
+
                 </div>
               </div>
             </div>
           </div>
+
           <div class="section-wrap-aside">
             <!-- RD Google Map-->
             <div class="google-map-container google-map-with-icon rd-google-map__model" data-zoom="5" data-center="-29.6500, -50.7800" data-icon="images/" data-icon-active="images/" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
