@@ -34,7 +34,7 @@
             $caminho = "images/" . $nome_arquivo;
     
             if (move_uploaded_file($vetor_foto['tmp_name'], $caminho)) {
-                return $nome_arquivo; // Retornar o nome do arquivo para salvar no banco de dados
+                return $nome_arquivo; // Retornar o nome do arquivo para salvar no BD
             }
         }
         return null;
@@ -104,10 +104,10 @@ if (isset($_SESSION['mensagem'])) {
     <h1>Cadastro BD</h1>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-        <form class="d-flex" role="search" action="cadastro-bd.php" method="GET">
-    <input class="form-control me-2" type="search" name="pesquisa" placeholder="Nome da empresa" aria-label="Search" autofocus value="<?php echo htmlspecialchars($termoPesquisa); ?>">
-    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-</form>
+            <form class="d-flex" role="search" action="cadastro-bd.php" method="GET">
+                <input class="form-control me-2" type="search" name="pesquisa" placeholder="Nome da empresa" aria-label="Search" autofocus value="<?php echo htmlspecialchars($termoPesquisa); ?>">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
         </div>
     </nav>
     

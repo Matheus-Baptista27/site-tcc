@@ -157,6 +157,8 @@ if (isset($_SESSION['mensagem'])) {
                         ?>
                     </tbody>
                 </table>
+              </div>
+            </div>
             </div>
         </div>
 

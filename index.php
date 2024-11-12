@@ -1,13 +1,20 @@
 <?php
-
     include 'conn.php';
-    // Realiza a consulta dos locais
-    $sql="select * from locais";
-    $result_de = mysqli_query($conn, $sql);
 
-    // Reexecuta a consulta para ser usada no campo "Para"
-    $result_para = mysqli_query($conn, $sql);
+    // Conexão com o banco de dados
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "site-voe";
+
+    $sql = "SELECT * FROM locais";
+    $result_locais = mysqli_query($conn, $sql);
+    $locais = [];
+    while ($row = mysqli_fetch_assoc($result_locais)) {
+        $locais[] = $row;
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="pt-BR"> 
@@ -25,13 +32,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
-    <link rel="stylesheet" href="css/fonts.css">
-		<!--[if lt IE 10]>
-    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
-    <script src="js/html5shiv.min.js"> </script>
-		<![endif]--> 
+    <link rel="stylesheet" href="css/fonts.css"> 
   
-
   </head>
   <body>
     <!-- Page preloader-->
@@ -195,7 +197,7 @@
             </div>
           </div>
         </div>
-
+        
         <div class="container container-bigger form-request-wrap form-request-wrap-modern">
           <div class="row row-fix justify-content-sm-center justify-content-lg-end">
             <div class="col-lg-6 col-xxl-5">
@@ -203,121 +205,58 @@
                 <h4>Encontre seu Destino</h4>
 
                 <!-- Formulário -->
-                <form class="rd-mailform form-fix" action="processa-formulario.php" method="POST">
-                  <div class="row row-20 row-fix">
-                    
-                    <!-- INDICAÇÃO DO VALOR DESEJADO -->
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Valor desejado de investimento (R$)</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <input class="form-input" id="investmentValue" name="valor_investimento" type="text" placeholder="Digite o valor desejado">
-                      </div>
-                    </div>
-
-                    <script>
-                      document.getElementById('investmentValue').addEventListener('input', function (e) {
-                        let value = e.target.value.replace(/\D/g, '');
-                        value = (value / 100).toFixed(2);
-                        e.target.value = `R$ ${value}`;
-                      });
-                    </script>
-
-                    <!-- DESTINO -->
-                    <div class="col-sm-12">
-                      <label class="form-label-outside">De</label>
-                      <div class="form-wrap form-wrap-inline">
-                        <select class="form-input select-filter" name="cidade_de">
-                          <?php while($row = mysqli_fetch_assoc($result_de)): ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['local']; ?></option>
-                          <?php endwhile; ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
-                      <label class="form-label-outside">Para</label>
-                      <div class="form-wrap form-wrap-inline">
-                        <select class="form-input select-filter" name="cidade_para">
-                          <?php while($row = mysqli_fetch_assoc($result_para)): ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['local']; ?></option>
-                          <?php endwhile; ?>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- INDICAÇÃO DA DATA INICIO E FIM PARA A VIAGEM -->
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Data Início</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <input class="form-input" id="dateForm" name="data_viagem" type="date">
-                        <label class="form-label" for="dateForm"></label>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Data Fim</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <input class="form-input" id="dateForm" name="data_viagem" type="date">
-                        <label class="form-label" for="dateForm"></label>
-                      </div>
-                    </div>
-                    
-                    <!-- DIAS DISPONÍVEIS 
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Dias disponíveis</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <select class="form-input select-filter" name="dias_permanencia">
-                          <option value="">Quantos dias?</option>
-                          <option value="1">1 dia</option>
-                          <option value="2">2 dias</option>
-                          <option value="3">3 dias</option>
-                          <option value="4">4 dias</option>
-                          <option value="5">5 dias</option>
-                          <option value="6">6 dias</option>
-                        </select>
-                      </div>
-                    </div>-->
-
-                    <!-- TIPO DE ESTABELECIMENTO -->
-                    <div class="col-sm-12">
-                      <label class="form-label-outside">Tipo de Estabelecimento</label>
-                      <div class="form-wrap form-wrap-inline">
-                        <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                          <div class="col-md-6" style="display: flex; flex-direction: column;">
-                            <label style="margin-bottom: 0.5rem;">
-                              <input type="checkbox" name="establishment_type[]" value="hotel"> Hotel e Pousada
-                            </label>
-                            <label style="margin-bottom: 0.5rem;">
-                              <input type="checkbox" name="establishment_type[]" value="restaurante"> Restaurante
-                            </label>
-                            <label style="margin-bottom: 0.5rem;">
-                              <input type="checkbox" name="establishment_type[]" value="cafe"> Lancherias
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- TIPO DE LOCAL -->
-                    <div class="col-sm-12 col-lg-6">
-                      <label class="form-label-outside">Locais desejados</label>
-                      <div class="form-wrap form-wrap-validation">
-                        <select class="form-input select-filter" name="tipo_local">
-                          <option value="">Tipos de lugares</option>
-                          <option value="cidade">Cidade</option>
-                          <option value="interior">Interior</option>
-                          <option value="lazer">Passeio de lazer</option>
-                        </select>
-                      </div>
-                    </div>
-                    
-                    <!-- BOTÃO DE PESQUISA -->
-                    <div class="col-sm-12 col-lg-12">
-                      <div class="form-button">
-                        <button class="button button-secondary button-nina" id="btn-pesquisar" type="submit">Pesquisar Destino</button>
-                      </div>
-                    </div>
+                <form action="processa-formulario.php" method="POST">
+                  <!-- Valor de Investimento -->
+                  <div class="form-group">
+                    <label for="valor_investimento">Valor de Investimento (R$)</label>
+                    <input type="text" name="valor_investimento" id="valor_investimento" class="form-control" placeholder="Ex: 1000">
                   </div>
+
+                  <!-- Cidade de Origem -->
+                  <div class="form-group">
+                    <label for="cidade_de">Cidade de Origem</label>
+                    <input type="text" name="cidade_de" id="cidade_de" class="form-control" placeholder="Ex: Porto Alegre">
+                  </div>
+
+                  <!-- Cidade de Destino -->
+                  <div class="form-group">
+                    <label for="cidade_para">Cidade de Destino</label>
+                    <input type="text" name="cidade_para" id="cidade_para" class="form-control" placeholder="Ex: Florianópolis">
+                  </div>
+
+                  <!-- Tipo de Local -->
+                  <div class="form-group">
+                    <label for="tipo">Tipo de Local</label>
+                    <select name="tipo" id="tipo" class="form-control">
+                      <option value="">Selecione</option>
+                      <option value="cidade">Cidade</option>
+                      <option value="interior">Interior</option>
+                      <option value="lazer">Lazer</option>
+                      <!-- Adicione mais opções conforme necessário -->
+                    </select>
+                  </div>
+
+                  <!-- Tipos de Estabelecimento -->
+                  <div class="form-group">
+                    <label>Tipos de Estabelecimento</label>
+                    <div class="form-check">
+                      <input type="checkbox" name="establishment_type[]" value="restaurante" class="form-check-input" id="restaurante">
+                      <label class="form-check-label" for="restaurante">Restaurante</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" name="establishment_type[]" value="hotel" class="form-check-input" id="hotel">
+                      <label class="form-check-label" for="hotel">Hotel</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" name="establishment_type[]" value="pousada" class="form-check-input" id="pousada">
+                      <label class="form-check-label" for="pousada">Pousada</label>
+                    </div>
+                    <!-- Adicione mais opções conforme necessário -->
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Pesquisar</button>
                 </form>
+
               </div>
             </div>
           </div>

@@ -223,6 +223,7 @@ if (isset($_GET['id'])) {
                   <option value="Hotel" <?php if ($estabelecimento['tipo'] == 'Hotel') echo 'selected'; ?>>Hotel ou Pousada</option>
                   <option value="Restaurantes" <?php if ($estabelecimento['tipo'] == 'Restaurantes') echo 'selected'; ?>>Restaurantes</option>
                   <option value="Lancherias" <?php if ($estabelecimento['tipo'] == 'Lancherias') echo 'selected'; ?>>Lancherias</option>
+                  <option value="Lazer" <?php if ($estabelecimento['tipo'] == 'Lazer') echo 'selected'; ?>>Lazer e Passeios</option>
                </select>
             </div>
             

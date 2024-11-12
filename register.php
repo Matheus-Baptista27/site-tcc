@@ -202,6 +202,7 @@ $mensagem = '';
                     <option value="Hotel">Hotel ou Pousada</option>
                     <option value="Restaurantes">Restaurantes</option>
                     <option value="Lancherias">Lancherias</option>
+                    <option value="Lazer-Passeios">Lazer e Passeios</option>
                 </select>
             </div>
             
