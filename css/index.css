@@ -66,14 +66,3 @@
   max-width: 200px;  /* Tamanho máximo do logo */
   height: auto;  /* Manter a proporção */
 }
-
-.benefit-message {
-  background-color: #77a0d8;  /* Cor azul para o fundo */
-  color: white;               /* Cor branca para o texto */
-  padding: 15px;              /* Espaçamento interno para deixar a mensagem mais visível */
-  border-radius: 5px;         /* Bordas arredondadas */
-  font-size: 1.2em;           /* Tamanho de fonte ajustado */
-  /*font-weight: bold;          /* Peso da fonte mais forte */
-  text-align: center;         /* Alinhamento central do texto */
-  margin-bottom: 20px;        /* Espaço abaixo da faixa */
-}

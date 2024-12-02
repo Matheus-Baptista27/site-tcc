@@ -52,13 +52,14 @@
         $estado = trim($_POST['estado']);
         $cep = trim($_POST['cep']);
         $tipo = trim($_POST['tipo']);
+        $local = trim($_POST['local']);
         $valor = trim($_POST['valor']);
 
         $foto = $_FILES['foto'];
         $nome_foto = mover_foto($foto) ?: '';
 
         // Query para inserir os dados
-        $sql = "INSERT INTO estabelecimento (nome, email, telefone, cidade, endereco, estado, cep, tipo, valor, foto) VALUES ('$nome', '$email', '$telefone', '$cidade', '$endereco', '$estado', '$cep', '$tipo', '$valor', '$nome_foto')";
+        $sql = "INSERT INTO estabelecimento (nome, email, telefone, cidade, endereco, estado, cep, tipo, local, valor, foto) VALUES ('$nome', '$email', '$telefone', '$cidade', '$endereco', '$estado', '$cep', '$tipo', '$local', '$valor', '$nome_foto')";
 
         // Executar a query e verificar o sucesso
     if (mysqli_query($conn, $sql)) {
@@ -123,6 +124,7 @@ if (isset($_SESSION['mensagem'])) {
                 <th scope="col">Estado</th> 
                 <th scope="col">CEP</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Local</th>
                 <th scope="col">Valor (R$)</th>
             </tr>
         </thead>
@@ -141,6 +143,7 @@ if (isset($_SESSION['mensagem'])) {
                     echo "<td>" . htmlspecialchars($row['estado']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['cep']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['tipo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['local']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['valor']) . "</td>";
                     echo "</tr>";
                 }

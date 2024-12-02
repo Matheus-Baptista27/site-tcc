@@ -22,8 +22,8 @@ $mensagem = '';
     <meta charset="utf-8">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald:200,400%7CLato:300,400,300italic,700%7CMontserrat:900">
+    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
@@ -85,57 +85,59 @@ $mensagem = '';
       </div>
     </div>
 
-   <!-- Page Header-->
-  <header class="section page-header">
-    <!-- RD Navbar-->
-    <div class="rd-navbar-wrap rd-navbar-corporate">
-      <nav class="rd-navbar" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-        <div class="rd-navbar-inner">
-          <!-- RD Navbar PAINEL-->
-          <div class="rd-navbar-panel">
-            <!-- RD Navbar MARCA-LOGO-->
-            <div class="rd-navbar-brand">
-              <a class="brand-name" href="index.php">
-                <img class="logo-default" src="images/logo-voe.png" alt="" width="200" height="100"/>
-              </a>
-            </div>
-          </div>
-          <div class="rd-navbar-aside-center">
-            <div class="rd-navbar-nav-wrap">
-              <!-- RD Navbar Nav-->
-              <ul class="rd-navbar-nav">
-                <!-- Verifica qual página está ativa e aplica a classe 'active' -->
-                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
-                  <a href="index.php">Início</a>
-                </li>
-                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
-                  <a href="about-us.php">Sobre Nós</a>
-                </li>
-                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
-                  <a href="contacts.php">Contato</a>
-                </li>
-                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                  <a href="reviews.php">Avaliações</a>
-                </li>
-                <li class="<?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                  <a href="register.php">Cadastre sua Empresa</a>
-                </li>
-                <li><a href="#">Sair</a></li>
-              </ul>
-            </div>
-          </div>
+   
+
+<!-- Page Header-->  
+<header class="section page-header">
+  <!-- RD Navbar -->
+  <div class="rd-navbar-wrap rd-navbar-corporate">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
+      <div class="container">
+        <!-- Marca/Logo -->
+        <a class="navbar-brand" href="index.php">
+          <img src="images/logo-voe.png" alt="Logo Voe">
+        </a>
+
+        <!-- Botão de Colapso -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
+                style="color: white; border: 1px solid white;">
+          <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
+
+        <!-- Links de Navegação -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="index.php">Início</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="about-us.php">Sobre Nós</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="contacts.php">Contato</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="reviews.php">Avaliações</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-hover" href="#">Sair</a>
+            </li>
+          </ul>
           <!-- Botão Reserve seu Destino -->
-          <a class="btn btn-lg w-10"
-            href="index.php"
-            style="background-color: #77a0d8; color: white; border: 2px solid #ffff;"
-            onmouseover="this.style.backgroundColor='#a0c4e1';"
-            onmouseout="this.style.backgroundColor='#77a0d8';">
+          <a class="btn btn-lg" href="index.php"
+             style="background-color: #77a0d8; color: white; border: 2px solid #fff; margin-left: 10px; padding: 10px 20px; text-transform: uppercase; font-weight: bold;"
+             onmouseover="this.style.backgroundColor='#a0c4e1';"
+             onmouseout="this.style.backgroundColor='#77a0d8';">
             Reserve seu destino
           </a>
         </div>
-      </nav>
-    </div>
-  </header>
+      </div>
+    </nav>
+  </div>
+</header>
 
   <section>
     <div class="container">
@@ -198,11 +200,24 @@ $mensagem = '';
             <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="tipo" style="display: block; margin-bottom: 0.5rem;">Tipo de Estabelecimento</label>
                 <select class="form-control" id="tipo" name="tipo" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;">
-                    <option value="">Selecione o tipo</option>
+                    <option value="">Selecione o estabelecimento</option>
                     <option value="Hotel">Hotel ou Pousada</option>
                     <option value="Restaurantes">Restaurantes</option>
                     <option value="Lancherias">Lancherias</option>
                     <option value="Lazer-Passeios">Lazer e Passeios</option>
+                </select>
+            </div>
+
+            <!-- Tipos de Locais -->
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="local" style="display: block; margin-bottom: 0.5rem;">Tipo de local em que seu estabelecimento se encontra</label>
+                <select class="form-control" id="local" name="local" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;">
+                    <option value="">Selecione o local</option>
+                    <option value="cidade">Cidade</option>
+                    <option value="interior">Interior</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="serra">Serra</option>
+                    <option value="praia">Praia</option>
                 </select>
             </div>
             

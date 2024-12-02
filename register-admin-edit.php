@@ -226,6 +226,19 @@ if (isset($_GET['id'])) {
                   <option value="Lazer" <?php if ($estabelecimento['tipo'] == 'Lazer') echo 'selected'; ?>>Lazer e Passeios</option>
                </select>
             </div>
+
+            <!-- Tipos do local do estabelecimento -->
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="local" style="display: block; margin-bottom: 0.5rem;">Tipo de local em que seu estabelecimento se encontra</label>
+                <select class="form-control" id="local" name="local" style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; height: auto;" value="<?php echo htmlspecialchars($estabelecimento['local']); ?>">
+                  <option value="">Selecione o local</option>
+                  <option value="Cidade" <?php if ($estabelecimento['local'] == 'Cidade') echo 'selected'; ?>>Cidade</option>
+                  <option value="Interior" <?php if ($estabelecimento['local'] == 'Interior') echo 'selected'; ?>>Interior</option>
+                  <option value="Lazer" <?php if ($estabelecimento['local'] == 'Lazer') echo 'selected'; ?>>Lazer</option>
+                  <option value="Serra" <?php if ($estabelecimento['local'] == 'Serra') echo 'selected'; ?>>Serra</option>
+                  <option value="Praia" <?php if ($estabelecimento['local'] == 'Praia') echo 'selected'; ?>>Praia</option>
+               </select>
+            </div>
             
             <!-- Valor Aproximado para Refeição ou Hospedagem -->
             <div class="form-group" style="margin-bottom: 1rem;">
