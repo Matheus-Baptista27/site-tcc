@@ -240,8 +240,8 @@
                   <div class="form-group">
                     <label>Tipos de Estabelecimento</label>
                     <div class="form-check">
-                      <input type="checkbox" name="tipo[]" value="restaurante" class="form-check-input" id="restaurante">
-                      <label class="form-check-label" for="restaurante">Restaurante</label>
+                      <input type="checkbox" name="tipo[]" value="restaurantes" class="form-check-input" id="restaurantes">
+                      <label class="form-check-label" for="restaurantes">Restaurantes</label>
                     </div>
                     <div class="form-check">
                       <input type="checkbox" name="tipo[]" value="hotel" class="form-check-input" id="hotel">
