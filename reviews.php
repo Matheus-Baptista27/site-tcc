@@ -80,54 +80,54 @@
    <!-- Page Header-->
    <header class="section page-header">
   <!-- RD Navbar -->
-    <div class="rd-navbar-wrap rd-navbar-corporate">
-    <nav class="navbar navbar-expand-lg navbar-light custom-navbar" style="height: 220px;">
-      <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 0;">
+  <div class="rd-navbar-wrap rd-navbar-corporate">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
+      <div class="container">
         <!-- Marca/Logo -->
-        <a class="navbar-brand" href="index.php" style="margin-left: 0;">
-          <img src="images/logo-voe.png" alt="Logo Voe" style="max-width: 300px; height: auto; margin-left: -70px;">
+        <a class="navbar-brand" href="index.php">
+          <img src="images/logo-voe.png" alt="Logo Voe">
         </a>
 
-          <!-- Botão de Colapso -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
-                  style="color: white; border: 1px solid white;">
-            <span class="navbar-toggler-icon" style="color: white;"></span>
-          </button>
+        <!-- Botão de Colapso -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
+                style="color: white; border: 1px solid white;">
+          <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
 
-          <!-- Links de Navegação -->
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
-                <a class="nav-link nav-link-hover" href="index.php">Início</a>
-              </li>
-              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
-                <a class="nav-link nav-link-hover" href="about-us.php">Sobre Nós</a>
-              </li>
-              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
-                <a class="nav-link nav-link-hover" href="contacts.php">Contato</a>
-              </li>
-              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
-                <a class="nav-link nav-link-hover" href="reviews.php">Avaliações</a>
-              </li>
-              <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : ''; ?>">
-                <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nav-link-hover" href="index.html">Sair</a>
-              </li>
-            </ul>
-            <!-- Botão Reserve seu Destino -->
-            <a class="btn btn-lg" href="index.php"
-              style="background-color: #77a0d8; color: white; border: 2px solid #fff; margin-left: 10px; padding: 10px 20px; text-transform: uppercase; font-weight: bold;"
-              onmouseover="this.style.backgroundColor='#a0c4e1';"
-              onmouseout="this.style.backgroundColor='#77a0d8';">
-              Reserve seu destino
-            </a>
-          </div>
+        <!-- Links de Navegação -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="index.php">Início</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="about-us.php">Sobre Nós</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="contacts.php">Contato</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="reviews.php">Avaliações</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-hover" href="#">Sair</a>
+            </li>
+          </ul>
+          <!-- Botão Reserve seu Destino -->
+          <a class="btn btn-lg" href="index.php"
+             style="background-color: #77a0d8; color: white; border: 2px solid #fff; margin-left: 10px; padding: 10px 20px; text-transform: uppercase; font-weight: bold;"
+             onmouseover="this.style.backgroundColor='#a0c4e1';"
+             onmouseout="this.style.backgroundColor='#77a0d8';">
+            Reserve seu destino
+          </a>
         </div>
-      </nav>
-    </div>
-  </header>
+      </div>
+    </nav>
+  </div>
+</header>
 
         <!-- section wave-->
         <div class="section-wave">
