@@ -89,14 +89,15 @@
     </div>
     
    <!-- Page Header-->  
+
    <header class="section page-header">
   <!-- RD Navbar -->
   <div class="rd-navbar-wrap rd-navbar-corporate">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar" style="height: 220px;">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 0;">
         <!-- Marca/Logo -->
-        <a class="navbar-brand" href="index.php">
-          <img src="images/logo-voe.png" alt="Logo Voe">
+        <a class="navbar-brand" href="index.php" style="margin-left: 0;">
+          <img src="images/logo-voe.png" alt="Logo Voe" style="max-width: 300px; height: auto; margin-left: -70px;">
         </a>
 
         <!-- Botão de Colapso -->
@@ -124,7 +125,7 @@
               <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-hover" href="#">Sair</a>
+              <a class="nav-link nav-link-hover" href="index.html">Sair</a>
             </li>
           </ul>
           <!-- Botão Reserve seu Destino -->
@@ -140,8 +141,59 @@
   </div>
 </header>
 
+   <!--<header class="section page-header">
+   RD Navbar 
+  <div class="rd-navbar-wrap rd-navbar-corporate">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #77a0d8; height: 150px; display: flex; align-items: center;">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 0;">
+         Marca/Logo 
+        <a class="navbar-brand" href="index.php" style="margin-left: 0;">
+          <img src="images/logo-voe.png" alt="Logo Voe" style="max-height: 300%; width: auto; margin-left: -90px;">
+        </a>
 
-        <!-- controle do scrooll do mouse -->
+        Botão de Colapso 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
+                style="color: white; border: 1px solid white;">
+          <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
+
+         Links de Navegação 
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto" style="margin: 0;">
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="index.php">Início</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about-us.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="about-us.php">Sobre Nós</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'contacts.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="contacts.php">Contato</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'reviews.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="reviews.php">Avaliações</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : ''; ?>">
+              <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-hover" href="#">Sair</a>
+            </li>
+          </ul>
+         
+          <a class="btn btn-lg" href="index.php"
+             style="background-color: #77a0d8; color: white; border: 2px solid #fff; margin-left: 10px; padding: 10px 20px; text-transform: uppercase; font-weight: bold;"
+             onmouseover="this.style.backgroundColor='#a0c4e1';"
+             onmouseout="this.style.backgroundColor='#77a0d8';">
+            Reserve seu destino
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header> -->
+
+
+        <!-- controle do scrooll do mouse 
         <script>
           let lastScrollTop = 0;
           const navbar = document.querySelector('.rd-navbar');
@@ -159,7 +211,7 @@
 
             lastScrollTop = scrollTop;
           });
-        </script>
+        </script>-->
 
     <section class="section">
       <div class="swiper-form-wrap">
@@ -182,7 +234,7 @@
                             Com base nessas informações nós iremos lhe indicar os locais em que se enquadram nas suas solicitações e 
                             irá dar algumas sugestões de lugares a visitar para passar o dia,final de semana ou até mesmo o período de férias.</p>
                             <a class="btn btn-lg"
-                              href="#"
+                              href="about-us.php"
                               style="background-color: #77a0d8; color: white; border: 2px solid #77a0d8;"
                               onmouseover="this.style.backgroundColor='#a0c4e1';"
                               onmouseout="this.style.backgroundColor='#77a0d8';">

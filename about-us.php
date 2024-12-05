@@ -88,11 +88,11 @@
   <header class="section page-header">
   <!-- RD Navbar -->
   <div class="rd-navbar-wrap rd-navbar-corporate">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#77a0d8; position: relative; transition: top 0.3s;">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar" style="height: 220px;">
+      <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 0;">
         <!-- Marca/Logo -->
-        <a class="navbar-brand" href="index.php">
-          <img src="images/logo-voe.png" alt="Logo Voe">
+        <a class="navbar-brand" href="index.php" style="margin-left: 0;">
+          <img src="images/logo-voe.png" alt="Logo Voe" style="max-width: 300px; height: auto; margin-left: -70px;">
         </a>
 
         <!-- Botão de Colapso -->
@@ -120,7 +120,7 @@
               <a class="nav-link nav-link-hover" href="register.php">Cadastre sua Empresa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-hover" href="#">Sair</a>
+              <a class="nav-link nav-link-hover" href="index.html">Sair</a>
             </li>
           </ul>
           <!-- Botão Reserve seu Destino -->

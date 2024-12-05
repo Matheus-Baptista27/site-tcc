@@ -59,10 +59,3 @@
   .nav-link-hover:hover::after {
     width: 100%;
   }
-
-/* Estilo para o logo da navbar */
-.navbar-brand img {
-  width: auto;  /* Ajuste automático de largura */
-  max-width: 200px;  /* Tamanho máximo do logo */
-  height: auto;  /* Manter a proporção */
-}
